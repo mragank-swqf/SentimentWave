@@ -5,6 +5,8 @@ from pydantic import BaseModel
 from database import get_db
 from db_models import Transcript, Segment, Analysis
 import uvicorn
+from agents.segmenter import segment_transcript
+from agents.scorer import score_segment
 
 app = FastAPI()
 
@@ -40,7 +42,6 @@ def upload_transcript(req: UploadRequest, db: Session = Depends(get_db)):
     db.refresh(transcript)
     return {"transcript_id": transcript.id}
 
-from agents.segmenter import segment_transcript
 
 @app.post("/analyze/{transcript_id}")
 def analyze(transcript_id: int, db: Session = Depends(get_db)):
@@ -51,18 +52,20 @@ def analyze(transcript_id: int, db: Session = Depends(get_db)):
     if not transcript:
         raise HTTPException(status_code=404, detail="Transcript not found")
     
-    # Agent 1
     segments = segment_transcript(transcript.raw_text)
     
-    # Save segments to DB (scores will be filled in by Agent 2 tomorrow)
     for i, seg in enumerate(segments):
+        score = score_segment(seg)
         db_segment = Segment(
             transcript_id=transcript.id,
             segment_index=i,
             speaker=seg.get("speaker"),
             role=seg.get("role"),
             text=seg.get("text"),
-            topic_label=seg.get("topic_label")
+            topic_label=seg.get("topic_label"),
+            sentiment_score = score.get("sentiment_score"),
+            tone=score.get("tone"),
+            hedging_phrases=score.get("hedging_phrases", [])
         )
         db.add(db_segment)
     
