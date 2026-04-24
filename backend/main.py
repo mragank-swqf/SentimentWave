@@ -54,7 +54,7 @@ def analyze(transcript_id: int, db: Session = Depends(get_db)):
     
     result = run_pipeline(transcript.raw_text)
     
-    for i, seg in enumerate(segments):
+    for i, seg in enumerate(result["segments"]):
         score = score_segment(seg)
         db_segment = Segment(
             transcript_id=transcript.id,
