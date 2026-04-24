@@ -7,7 +7,7 @@ from db_models import Transcript, Segment, Analysis
 import uvicorn
 from agents.segmenter import segment_transcript
 from agents.scorer import score_segment
-
+from pipeline import run_pipeline
 app = FastAPI()
 
 app.add_middleware(
@@ -52,7 +52,7 @@ def analyze(transcript_id: int, db: Session = Depends(get_db)):
     if not transcript:
         raise HTTPException(status_code=404, detail="Transcript not found")
     
-    segments = segment_transcript(transcript.raw_text)
+    result = run_pipeline(transcript.raw_text)
     
     for i, seg in enumerate(segments):
         score = score_segment(seg)
@@ -69,9 +69,19 @@ def analyze(transcript_id: int, db: Session = Depends(get_db)):
         )
         db.add(db_segment)
     
+    analysis = result["analysis"]
+    db_analysis = Analysis(
+        transcript_id = transcript.id,
+        overall_sentiment=analysis.get("overall_sentiment"),
+        summary=analysis.get("summary"),
+        notable_moments=analysis.get("notable_moments", [])
+    )
+    db.add(db_analysis)
     db.commit()
+    db.refresh(db_analysis)
     return {
-        "message": "Segmentation complete",
-        "transcript_id": transcript_id,
-        "segment_count": len(segments)
+        "analysis_id" : db_analysis.id,
+        "overall_sentiment" : db_analysis.overall_sentiment,
+        "summary": db_analysis.summary,
+        "notable_moments": db_analysis.notable_moments
     }
