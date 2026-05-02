@@ -137,7 +137,7 @@ def get_waveform(transcript_id: int, db: Session = Depends(get_db)):
 @app.get("/transcripts")
 def get_transcripts(db: Session = Depends(get_db)):
     transcripts = db.query(Transcript).order_by(
-        Transcript.uploaded_at.dec()
+        Transcript.uploaded_at.desc()
     ).all()
     return [
         {
