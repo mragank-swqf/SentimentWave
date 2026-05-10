@@ -1,6 +1,4 @@
-import requests
-
-transcript = """
+"""
 NXP Semiconductors N.V. (NXPI) Q1 2026 Earnings Call April 28, 2026 4:30 PM EDT
 
 Company Participants
@@ -327,16 +325,60 @@ Aviva Links, I think, is a great platform that we got on SerDes platform. This i
 
 And the last one on Kinara. Kinara was a great acquisition directly in the middle of our North Star, which is becoming intelligent systems at the edge. And Kinara is -- it's been a perfect combination for our i.MX platform that is our application processor. It allows us to really engage with customers in ways that we couldn't have done in the past just because we didn't have the capability, we didn't even have the credibility on it. And so today, sales funnel is quite large and literally over $1 billion of sales funnel. So obviously, a lot of things to go and go and chase. Our customer reaction is really good. We have I think we have like more than 30 POCs going on, and we expect -- again, we are on track to have some revenue of combination of the Kinara asset with i.MX in the second half of 2027 and 2028.
 
-The other important thing is that we're starting to integrate the Kinara IP already into our industrial processors and our auto processors. This is monolithic integration of the IP. So this is also going to be part of our next-generation processing for our auto and industrial products."""
-"""
-res = requests.post("http://localhost:8000/upload", json={
-    "ticker": "NXPI",
-    "company_name": "NXP Semiconductors",
-    "quarter": 1,
-    "year": 2026,
-    "text": transcript
-})
-"""
+The other important thing is that we're starting to integrate the Kinara IP already into our industrial processors and our auto processors. This is monolithic integration of the IP. So this is also going to be part of our next-generation processing for our auto and industrial products.
 
-res = requests.post("http://localhost:8000/analyze/7")
-print(res.json())
+Gary Mobley
+Loop Capital Markets LLC, Research Division
+
+Appreciate it, Rafael. I want to ask really more of a direct question on your comfort to the 2027 targets. We all know what the revenue would materialize to at $15.8 billion if you hit the growth targets as laid out in November 2024. But we've had, of course, the divestiture of the MEMS Sensors business. So should we think about the endpoint or I guess, the milestone for 2027 is about $15.4 billion in revenue?
+
+Jeff Palmer
+Senior Vice President of Investor Relations
+
+So Gary, let me take that modeling question. So first, in your calculation, remember, you've got to back off the sale of the MEMS business. So that's just a housekeeping item. But I think that what you've heard from both Rafael and Bill today is we are standing solidly behind our long-term growth rates. At the total company level, that means we're going to hit 6% to 10% total company. And I know you guys know how to do modeling better than anybody. You can kind of back into what that means for '26 and '27, and we're going to leave that exercise to you. But we are not backing away from those targets. And I would say the thing to take away from maybe some of the comments from both Bill and Rafael is the design wins we have, and they are starting to go into production. So our clarity and our belief in achieving those targets is increasing daily.
+
+Operator
+
+And the next question will be coming from the line of Quinn Bolton of Needham & Company.
+
+Quinn Bolton
+Needham & Company, LLC, Research Division
+
+I guess I wanted to come back to the IIoT business. And if I've got my numbers right, it looks like that business will hit a record revenue level in the second quarter. How much of that is just broad-based industrial end market recovery versus your company-specific growth drivers? And then I've got a quick follow-up for Bill.
+
+Rafael Sotomayor
+CEO, President & Executive Director
+
+Yes. Let me jump on that one. I think you're right. I think the strength -- IoT, industrial and IoT for us started showing strength in Q3 last year. We started to grow year-over-year, and that growth continued in Q4, continue in Q1 with a 20-plus percent range, and now we're guiding to the high 30s. So we said it clearly, the strength is broad-based. It's all geographical regions in all markets. We have certain products right now that are driving the growth. We said that half of that growth came from new industrial processing portfolio. That is on -- that is the accelerated secular growth drivers.
+
+What is also very encouraging is that we're seeing the core part of industrial IoT also growing. This is a part of the revenue of the last year decline now is back into growth. In Q1, it grew 15% year-on-year. And so you can see that the rest of the portfolio is also recovering. So it's very -- it's broad-based now. It's also not only the accelerated growth drivers performing, but the core part of our business in industrial and IoT is coming back. And so that kind of tells you hopefully a little bit of flavor of the strength of the momentum that we have going into Q2 and likely carry in the second half of the year.
+
+Bill Betz
+Executive VP & CFO
+
+Yes. Maybe I'll just put a number there. The way to think about industrial IoT, the secular growth drivers are representing about 37%, and they're growing north of 40%, 50% kind of range, just to give you a feel.
+
+Quinn Bolton
+Needham & Company, LLC, Research Division
+
+Great. And then for Bill, you've talked about the 200 basis points that you get from the ramp of VSMC and in-sourcing or moving production from 200-millimeter to 300-millimeter. Can you give us a sense as that facility comes online, how quickly do you get that benefit? Does it -- can you see it all in 1 year? Or does it take several years to achieve the full 200 basis points?
+
+Bill Betz
+Executive VP & CFO
+
+Yes, it's a great question. Typically, we should start to see it when the factory is fully utilized, which is probably a good utilization number for that type of factory runs 90%, 95%. And so it will take several quarters to get that full benefit, depending on the ramp, of course. So my guess is you'll probably get a partial of it for sure in 2028. Will you get the full amount? Not sure. It all depends on the timing of the ramp, but we're pushing strong, and we want to get it as well and drive it.
+
+Jeff Palmer
+Senior Vice President of Investor Relations
+
+Lisa, I think that will be our last question, and I think we'll pass it back to Rafael to conclude the call today.
+
+Rafael Sotomayor
+CEO, President & Executive Director
+
+Thank you, everyone, for joining us today and for your thoughtful questions. In closing, I would like to leave you with three takeaways. First, NXP growth is driven by leadership in SDV and physical AI and industrial & IoT. Second, our company-specific growth drivers are performing as designed. Lastly, we're reaffirming our Analyst Day commitments, which implies double-digit growth in both 2026 and 2027. This quarter reaffirms the strength of the execution to our strategy. We remain committed to disciplined investment, margin expansion and portfolio optimization to deliver sustainable long-term value for our shareholders. Thank you.
+
+Operator
+
+Thank you. 
+"""
